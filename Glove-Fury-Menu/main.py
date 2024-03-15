@@ -7,7 +7,8 @@ SCREEN = pygame.display.set_mode((1420, 885))
 pygame.display.set_caption("Menu")
 
 BG = pygame.image.load("assets/Background.png")
-
+pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
+pygame.mixer.music.play(3)
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
