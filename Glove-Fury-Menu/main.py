@@ -8,7 +8,7 @@ pygame.display.set_caption("Menu")
 
 BG = pygame.image.load("assets/Background.png")
 
-def get_font(size): # Returns Press-Start-2P in the desired size
+def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
 def play():
@@ -22,7 +22,7 @@ def play():
         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
 
         PLAY_BACK = Button(image=None, pos=(640, 460), 
-                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
+                            text_input="BACK", font=get_font(75), base_color="Black", hovering_color="White")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
@@ -48,7 +48,7 @@ def options():
         SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
         OPTIONS_BACK = Button(image=None, pos=(700, 460), 
-                            text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")
+                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Black")
 
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(SCREEN)
@@ -73,11 +73,11 @@ def main_menu():
         MENU_RECT = MENU_TEXT.get_rect(center=(700, 100))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(700, 250), 
-                            text_input="Boxear", font=get_font(30), base_color="#d7fcd4", hovering_color="White")
+                            text_input="Boxear", font=get_font(50), base_color="White", hovering_color="Black")
         OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(700, 400), 
-                            text_input="Opciones", font=get_font(30), base_color="#d7fcd4", hovering_color="White")
+                            text_input="Opciones", font=get_font(50), base_color="White", hovering_color="Black")
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(700, 550), 
-                            text_input="Huir como un cobarde", font=get_font(29), base_color="#d7fcd4", hovering_color="White")
+                            text_input="Huir como un cobarde", font=get_font(50), base_color="White", hovering_color="Black")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
