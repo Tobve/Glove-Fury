@@ -4,7 +4,7 @@ from button import Button
 pygame.init()
 
 SCREEN = pygame.display.set_mode((1420, 885))
-pygame.display.set_caption("Menu")
+pygame.display.set_caption("Glove Fury")
 
 BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
@@ -70,7 +70,7 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(100).render("Menu", True, "#b68f40")
+        MENU_TEXT = get_font(100).render("Glove Fury", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(700, 100))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(700, 250), 
