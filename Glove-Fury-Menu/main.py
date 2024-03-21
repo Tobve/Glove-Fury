@@ -6,6 +6,8 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1420, 885))
 pygame.display.set_caption("Glove Fury")
 
+OptionsBG = pygame.image.load ("assets/Faceoff.png") 
+
 BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
 pygame.mixer.music.play(3)
@@ -23,7 +25,7 @@ def play():
         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
 
         PLAY_BACK = Button(image=None, pos=(640, 460), 
-                            text_input="BACK", font=get_font(75), base_color="Black", hovering_color="White")
+                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Black")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
         PLAY_BACK.update(SCREEN)
@@ -42,14 +44,14 @@ def options():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
-        SCREEN.fill("white")
+        SCREEN.blit(OptionsBG, (0, 0))
 
-        OPTIONS_TEXT = get_font(45).render("This is the OPTIONS screen.", True, "Black")
-        OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(700, 260))
+        OPTIONS_TEXT = get_font(45).render("Opciones", True, "Black")
+        OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(700, 100))
         SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
-        OPTIONS_BACK = Button(image=None, pos=(700, 460), 
-                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Black")
+        OPTIONS_BACK = Button(image=None, pos=(700, 760),
+                            text_input="Inicio", font=get_font(75), base_color="Black", hovering_color="White")
 
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(SCREEN)
@@ -61,7 +63,7 @@ def options():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                     main_menu()
-
+        
         pygame.display.update()
 
 def main_menu():
@@ -70,15 +72,15 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(100).render("Glove Fury", True, "#b68f40")
+        MENU_TEXT = get_font(100).render("Glove Fury", True, "#E19226")
         MENU_RECT = MENU_TEXT.get_rect(center=(700, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(700, 250), 
-                            text_input="Boxear", font=get_font(50), base_color="White", hovering_color="Black")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(700, 400), 
-                            text_input="Opciones", font=get_font(50), base_color="White", hovering_color="Black")
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(700, 550), 
-                            text_input="Huir como un cobarde", font=get_font(50), base_color="White", hovering_color="Black")
+        PLAY_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 250), 
+                            text_input="Boxear", font=get_font(47), base_color="White", hovering_color="Black")
+        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 400), 
+                            text_input="Ajustes", font=get_font(47), base_color="White", hovering_color="Black")
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 550), 
+                            text_input="Miedo?", font=get_font(47), base_color="White", hovering_color="Black")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
@@ -95,6 +97,7 @@ def main_menu():
                     play()
                 if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                     options()
+                    pygame.image.load()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
