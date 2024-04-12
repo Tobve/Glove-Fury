@@ -12,7 +12,7 @@ size = (1405, 900)
 
 screen = pygame.display.set_mode(size)
 #Para cargar las imagenes
-image = pygame.image.load("boxeo2.png").convert()
+imagen = pygame.image.load("boxeo2.png").convert()
 
 gif= VideoFileClip("andre-antunes-i-foot-work.gif")
 frames = gif.iter_frames()
@@ -23,7 +23,7 @@ while True:
         if event.type == pygame.QUIT:
             print(event)
             sys.exit()
-    screen.blit(image, [0, 0])
+    screen.blit(imagen, [0, 0])
     frame = next(frames, None)
     if frame is None:
         frames = gif.iter_frames()
