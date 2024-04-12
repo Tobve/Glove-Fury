@@ -1,5 +1,7 @@
-import pygame
 import sys
+import pygame
+from moviepy.editor import *
+
 
 pygame.init()
 
@@ -12,7 +14,8 @@ screen = pygame.display.set_mode(size)
 #Para cargar las imagenes
 image = pygame.image.load("boxeo2.png").convert()
 
-images= pygame.image.load("andre-antunes-i-foot-work.gif")
+gif= VideoFileClip("andre-antunes-i-foot-work.gif")
+frames = gif.iter_frames()
 
 #Y aqui ponemos el evento para cuando quieras cerrarlo
 while True:
@@ -21,8 +24,16 @@ while True:
             print(event)
             sys.exit()
     screen.blit(image, [0, 0])
-    screen.blit(images,[0, 0])
+    frame = next(frames, None)
+    if frame is None:
+        frames = gif.iter_frames()
+        frame = next(frames, None)
+
+    screen.blit(pygame_frame, (0, 0))
+
+
     pygame.display.flip()
+  
 
 
 
