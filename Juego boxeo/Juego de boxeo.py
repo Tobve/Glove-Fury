@@ -12,6 +12,7 @@ screen = pygame.display.set_mode(size)
 #Para cargar las imagenes
 image = pygame.image.load("boxeo2.png").convert()
 
+images= pygame.image.load("andre-antunes-i-foot-work.gif")
 
 #Y aqui ponemos el evento para cuando quieras cerrarlo
 while True:
@@ -20,8 +21,8 @@ while True:
             print(event)
             sys.exit()
     screen.blit(image, [0, 0])
+    screen.blit(images,[0, 0])
     pygame.display.flip()
-  
 
 
 
