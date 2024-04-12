@@ -11,19 +11,22 @@ screen = pygame.display.set_mode(size)
 
 #Para cargar las imagenes
 imagen = pygame.image.load("assets/octagono.png").convert()
-Peleador = pygame.image.load("assets/andre-antunes-i-foot-work.gif").convert_alpha()
+Peleador1 = pygame.image.load("assets/Boxeador.png").convert_alpha()
 Puñetazo_I = pygame.image.load("assets/andre-antunes-i-left-punch.gif").convert_alpha()
-Peleador2 = pygame.image.load("assets/pixil-frame-0.png")
+Peleador2 = pygame.image.load("assets/Boxeador2.png")
 Vida_Rojo = pygame.image.load("assets/VidaRojo.png")
 Vida_Azul = pygame.image.load("assets/VidaAzul.png")
 
 
 #Variable para las posiciones
-Peleador_x = -120
-Peleador_Y = 30
+Peleador1_x = -120
+Peleador1_Y = 30
+Peleador1_Ancho = Peleador1.get_width()
 
 Peleador2_x = 700
 Peleador2_Y = 30
+Peleador2_Ancho = Peleador2.get_width()
+
 #Variable para añadir velocidad
 Velocidad = 5
 
@@ -49,19 +52,19 @@ while True:
     
     #Este if es para los movimientos del peleador rojo
     if Tecla[pygame.K_a]:
-        Peleador_x -= Velocidad
+        Peleador1_x -= Velocidad
     if Tecla[pygame.K_d]:
-        Peleador_x += Velocidad
+        Peleador1_x += Velocidad
     
     #Lo utilizamos para que se vean los personajes 
-    screen.blit(Peleador, (Peleador_x, Peleador_Y))
+    screen.blit(Peleador, (Peleador1_x, Peleador1_Y))
     screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
     
     #Colisiones del peleador rojo
-    if Peleador_x < -300:
-        Peleador_x = -300
-    if Peleador_x > 900:
-        Peleador_x = 900
+    if Peleador1_x < -300:
+        Peleador1_x = -300
+    if Peleador1_x > 900:
+        Peleador1_x = 900
 
     #Este if es para los movimientos del peleador azul
     if Tecla[pygame.K_LEFT]:
@@ -78,7 +81,16 @@ while True:
     #Barras de vida
     screen.blit(Vida_Rojo, [100, 0])
     screen.blit(Vida_Azul, [800, 0])
-    
+
+    if Peleador1_x + Peleador1_Ancho / 2 < Peleador2_x + Peleador2_Ancho / 2:
+           
+            Peleador1_x = Peleador2_x - Peleador1_Ancho
+            Peleador1_velocidad_x = 1
+    else:
+            
+            Peleador1_x = Peleador2_x + Peleador2_Ancho
+            Peleador1_velocidad_x = 1
+
     pygame.display.flip()
 
 
