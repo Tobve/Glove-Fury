@@ -1,7 +1,5 @@
-import sys
 import pygame
-from moviepy.editor import *
-
+import sys
 
 pygame.init()
 
@@ -9,14 +7,25 @@ pygame.init()
 size = (1405, 900)
 
 #Aqui vamos a crear la ventana
-
 screen = pygame.display.set_mode(size)
+
 #Para cargar las imagenes
-imagen = pygame.image.load("boxeo2.png").convert()
+imagen = pygame.image.load("assets/octagono.png").convert()
+Peleador = pygame.image.load("assets/andre-antunes-i-foot-work.gif").convert_alpha()
 
-gif= VideoFileClip("andre-antunes-i-foot-work.gif")
-frames = gif.iter_frames()
+#Variable para las keystrokes
+Peleador_x = -120
+Peleador_Y = 30
 
+#Variable para añadir velocidad
+Velocidad = 3
+
+class Boxeador:
+    def __init__(self, izquierda, derecha):
+     self.izquierda = izquierda
+     self.derecha = derecha
+     self.Velocidad = Velocidad
+      
 #Y aqui ponemos el evento para cuando quieras cerrarlo
 while True:
     for event in pygame.event.get():
@@ -24,12 +33,15 @@ while True:
             print(event)
             sys.exit()
     screen.blit(imagen, [0, 0])
-    frame = next(frames, None)
-    if frame is None:
-        frames = gif.iter_frames()
-        frame = next(frames, None)
 
-    screen.blit(pygame_frame, (0, 0))
-
-
+    
+    Tecla = pygame.key.get_pressed()
+    
+    if Tecla[pygame.K_LEFT]:
+        Peleador_x -= Velocidad
+    if Tecla[pygame.K_RIGHT]:
+        Peleador_x += Velocidad
+    
+    screen.blit(Peleador, (Peleador_x, Peleador_Y))
+    
     pygame.display.flip()
