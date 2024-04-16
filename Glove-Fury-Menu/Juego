@@ -61,10 +61,10 @@ while True:
     screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
     
     #Colisiones del peleador rojo
-    if Peleador1_x < -300:
-        Peleador1_x = -300
-    if Peleador1_x > 900:
-        Peleador1_x = 900
+   if Peleador1_x < 0:
+        Peleador1_x = 0
+    if Peleador1_x > Peleador2_x - 196:
+        Peleador1_x = Peleador2_x - 196
 
     #Este if es para los movimientos del peleador azul
     if Tecla[pygame.K_LEFT]:
@@ -72,24 +72,17 @@ while True:
     if Tecla[pygame.K_RIGHT]:
         Peleador2_x += Velocidad
     
-    #Colisiones del peleador azul    
-    if Peleador2_x < -300:
-        Peleador2_x = -300
-    if Peleador2_x > 900:
-        Peleador2_x = 900
-    
+    #Colisiones del peleador azul
+    if Peleador2_x > 1200:
+        Peleador2_x = 1200
+    elif Peleador2_x < Peleador1_x + 196:
+        Peleador2_x = Peleador1_x + 196
+    elif Peleador2_x < Peleador1_x + Peleador1.get_width() - 1:
+        Peleador2_x = Peleador1_x + Peleador1.get_width() - 1
+
     #Barras de vida
     screen.blit(Vida_Rojo, [100, 0])
     screen.blit(Vida_Azul, [800, 0])
-
-    if Peleador1_x + Peleador1_Ancho / 2 < Peleador2_x + Peleador2_Ancho / 2:
-           
-            Peleador1_x = Peleador2_x - Peleador1_Ancho
-            Peleador1_velocidad_x = 1
-    else:
-            
-            Peleador1_x = Peleador2_x + Peleador2_Ancho
-            Peleador1_velocidad_x = 1
 
     pygame.display.flip()
 
