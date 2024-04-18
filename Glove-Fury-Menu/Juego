@@ -85,6 +85,14 @@ while True:
     screen.blit(Vida_Rojo, [100, 0])
     screen.blit(Vida_Azul, [800, 0])
 
+    if Tecla[pygame.K_q]:
+       Golpeando1 = True
+    else:
+        Golpeando1 = False
+
+    if Golpeando1:
+    screen.blit(Golpear1, (Peleador1_x, Peleador1_Y))
+
     pygame.display.flip()
 
 
