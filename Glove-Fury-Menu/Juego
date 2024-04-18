@@ -16,7 +16,8 @@ Puñetazo_I = pygame.image.load("assets/andre-antunes-i-left-punch.gif").convert
 Peleador2 = pygame.image.load("assets/Boxeador2.png")
 Vida_Rojo = pygame.image.load("assets/VidaRojo.png")
 Vida_Azul = pygame.image.load("assets/VidaAzul.png")
-
+Golpear1 = pygame.image.load("assets/Golpe1.png")
+Golpear2 = pygame.image.load("assets/Golpe2.png")
 
 #Variable para las posiciones
 Peleador1_x = -120
