@@ -12,24 +12,24 @@ screen = pygame.display.set_mode(size)
 #Para cargar las imagenes
 imagen = pygame.image.load("assets/octagono.png").convert()
 Peleador1 = pygame.image.load("assets/Boxeador.png").convert_alpha()
-Puñetazo_I = pygame.image.load("assets/andre-antunes-i-left-punch.gif").convert_alpha()
 Peleador2 = pygame.image.load("assets/Boxeador2.png")
 Vida_Rojo = pygame.image.load("assets/VidaRojo.png")
 Vida_Azul = pygame.image.load("assets/VidaAzul.png")
 Golpear1 = pygame.image.load("assets/Golpe1.png")
 Golpear2 = pygame.image.load("assets/Golpe2.png")
 
+
 #Variable para las posiciones
-Peleador1_x = -120
+Peleador1_x = -320
 Peleador1_Y = 30
 Peleador1_Ancho = Peleador1.get_width()
 
-Peleador2_x = 700
+Peleador2_x = 1200
 Peleador2_Y = 30
 Peleador2_Ancho = Peleador2.get_width()
 
 #Variable para añadir velocidad
-Velocidad = 5
+Velocidad = 20
 
 class Boxeador:
     def __init__(self, izquierda, derecha):
@@ -38,8 +38,8 @@ class Boxeador:
      self.Velocidad = Velocidad
 
 #Colores
-Red = 255, 0, 0
-Blue = 0, 0, 255
+Rojo = 255, 0, 0
+Azul = 0, 0, 255
 
 while True:
     for event in pygame.event.get():
@@ -47,7 +47,7 @@ while True:
             print(event)
             sys.exit()
     screen.blit(imagen, [0, 0])
-
+    
     #Variable para las teclas
     Tecla = pygame.key.get_pressed()
     
@@ -56,13 +56,12 @@ while True:
         Peleador1_x -= Velocidad
     if Tecla[pygame.K_d]:
         Peleador1_x += Velocidad
-    
-    #Lo utilizamos para que se vean los personajes 
-    screen.blit(Peleador, (Peleador1_x, Peleador1_Y))
-    screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
+   
+    Vida = 100
+    Vida_maxima = 100
     
     #Colisiones del peleador rojo
-   if Peleador1_x < 0:
+    if Peleador1_x < 0:
         Peleador1_x = 0
     if Peleador1_x > Peleador2_x - 196:
         Peleador1_x = Peleador2_x - 196
@@ -73,26 +72,39 @@ while True:
     if Tecla[pygame.K_RIGHT]:
         Peleador2_x += Velocidad
     
-    #Colisiones del peleador azul
+    #Colisiones del peleador azul    
     if Peleador2_x > 1200:
         Peleador2_x = 1200
     elif Peleador2_x < Peleador1_x + 196:
         Peleador2_x = Peleador1_x + 196
     elif Peleador2_x < Peleador1_x + Peleador1.get_width() - 1:
         Peleador2_x = Peleador1_x + Peleador1.get_width() - 1
-
+        
     #Barras de vida
     screen.blit(Vida_Rojo, [100, 0])
     screen.blit(Vida_Azul, [800, 0])
-
+    
     if Tecla[pygame.K_q]:
        Golpeando1 = True
     else:
         Golpeando1 = False
-
+        screen.blit(Peleador1, (Peleador1_x, Peleador1_Y))
+        
     if Golpeando1:
-    screen.blit(Golpear1, (Peleador1_x, Peleador1_Y))
+        screen.blit(Golpear1, (Peleador1_x - 270, Peleador1_Y))
+    
+    if Tecla[pygame.K_p]:
+       Golpeando2 = True
+    else:
+        Golpeando2 = False
+        screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
+        
+    if Golpeando2:
+        screen.blit(Golpear2, (Peleador2_x - 390, Peleador2_Y))
 
+    
+    Vida_Largo = 477
+    Vida_Alto = 27
+            
     pygame.display.flip()
-
 
