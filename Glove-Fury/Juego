@@ -18,7 +18,6 @@ Vida_Azul = pygame.image.load("assets/VidaAzul.png")
 Golpear1 = pygame.image.load("assets/Golpe1.png")
 Golpear2 = pygame.image.load("assets/Golpe2.png")
 
-
 #Variable para las posiciones
 Peleador1_x = -320
 Peleador1_Y = 30
@@ -79,13 +78,10 @@ while True:
         Peleador2_x = Peleador1_x + 196
     elif Peleador2_x < Peleador1_x + Peleador1.get_width() - 1:
         Peleador2_x = Peleador1_x + Peleador1.get_width() - 1
-        
-    #Barras de vida
-    screen.blit(Vida_Rojo, [100, 0])
-    screen.blit(Vida_Azul, [800, 0])
     
     if Tecla[pygame.K_q]:
        Golpeando1 = True
+       
     else:
         Golpeando1 = False
         screen.blit(Peleador1, (Peleador1_x, Peleador1_Y))
@@ -95,6 +91,7 @@ while True:
     
     if Tecla[pygame.K_p]:
        Golpeando2 = True
+       
     else:
         Golpeando2 = False
         screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
@@ -102,9 +99,18 @@ while True:
     if Golpeando2:
         screen.blit(Golpear2, (Peleador2_x - 390, Peleador2_Y))
 
-    
+    #Barra de vida
     Vida_Largo = 477
     Vida_Alto = 27
-            
+    Vida_RojoX = 112
+    Vida_RojoY = 31
+    Vida_AzulX = 812
+    Vida_AzulY = 31
+    
+    screen.blit(Vida_Rojo, [100, 0])
+    screen.blit(Vida_Azul, [800, 0])
+    
+    pygame.draw.rect(screen, Rojo, (Vida_RojoX, Vida_RojoY, 477, 27))
+    pygame.draw.rect(screen, Azul, (Vida_AzulX, Vida_AzulY, 477, 27)) 
+    
     pygame.display.flip()
-
