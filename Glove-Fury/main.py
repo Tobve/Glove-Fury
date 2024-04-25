@@ -1,23 +1,22 @@
 import pygame
 import sys
-from button import Button  # Asumo que tienes un módulo llamado 'button' que contiene la clase Button
-
+from button import Button
 pygame.init()
 
-# Definición de la pantalla y carga de imágenes
+#Definición de la pantalla y carga de imágenes
 screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
 
-OptionsBG = pygame.image.load("Pygame-main/Glove-Fury/assets/Faceoff.png")
+OptionsBG = pygame.image.load("assets/Faceoff.png")
 BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
 pygame.mixer.music.play(3)
 
-# Función para obtener una fuente
+#Función para obtener una fuente
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
-# Función para la pantalla de juego
+#Función para la pantalla de juego
 def play():
     imagen = pygame.image.load("assets/octagono.png").convert()
     Peleador1 = pygame.image.load("assets/Boxeador.png").convert_alpha()
@@ -27,13 +26,13 @@ def play():
     Golpear1 = pygame.image.load("assets/Golpe1.png")
     Golpear2 = pygame.image.load("assets/Golpe2.png")
 
-    # Variables para las posiciones
+    #Variables para las posiciones
     Peleador1_x = -320
     Peleador1_Y = 30
     Peleador2_x = 1200
     Peleador2_Y = 30
 
-    # Variable para añadir velocidad
+    #Variable para añadir velocidad
     Velocidad = 20
     
     golpes_jugador1 = 0
@@ -47,28 +46,28 @@ def play():
 
         screen.blit(imagen, [0, 0])
 
-        # Variables para las teclas
+        #Variables para las teclas
         Tecla = pygame.key.get_pressed()
 
-        # Movimientos del peleador rojo
+        #Movimientos del peleador rojo
         if Tecla[pygame.K_a]:
             Peleador1_x -= Velocidad
         if Tecla[pygame.K_d]:
             Peleador1_x += Velocidad
 
-        # Colisiones del peleador rojo
+        #Colisiones del peleador rojo
         if Peleador1_x < 0:
             Peleador1_x = 0
         if Peleador1_x > Peleador2_x - 196:
             Peleador1_x = Peleador2_x - 196
 
-        # Movimientos del peleador azul
+        #Movimientos del peleador azul
         if Tecla[pygame.K_LEFT]:
             Peleador2_x -= Velocidad
         if Tecla[pygame.K_RIGHT]:
             Peleador2_x += Velocidad
 
-        # Colisiones del peleador azul
+        #Colisiones del peleador azul
         if Peleador2_x > 1200:
             Peleador2_x = 1200
         elif Peleador2_x < Peleador1_x + 196:
@@ -76,7 +75,7 @@ def play():
         elif Peleador2_x < Peleador1_x + Peleador1.get_width() - 1:
             Peleador2_x = Peleador1_x + Peleador1.get_width() - 1
 
-        # Detección de golpes y animaciones
+        #Detección de golpes y animaciones
         if Tecla[pygame.K_q]:
             # Si la posición del golpe 1 coincide con la del jugador 2, incrementa el contador de golpes del jugador 1
             if Peleador1_x - 270 <= Peleador2_x <= Peleador1_x - 270 + Golpear1.get_width():
@@ -101,14 +100,14 @@ def play():
         screen.blit(Vida_Rojo, [100, 0])
         screen.blit(Vida_Azul, [800, 0])
 
-        # Dibujar la barra de vida azul
+        #Dibujar la barra de vida azul
         longitud_barra_azul = Vida_Largo - golpes_jugador1 * 10  # Ajusta el valor como prefieras
         pygame.draw.rect(screen, (0, 0, 255), (Vida_AzulX, Vida_AzulY, longitud_barra_azul, Vida_Alto))
 
         pygame.display.flip()
         pygame.display.update()
 
-# Función para la pantalla de opciones
+#Función para la pantalla de opciones
 def options():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
@@ -135,7 +134,7 @@ def options():
 
         pygame.display.update()
 
-# Función para la pantalla principal del menú
+#Función para la pantalla principal del menú
 def main_menu():
     PLAY_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 250),
                          text_input="Boxear", font=get_font(47), base_color="White", hovering_color="Black")
