@@ -35,6 +35,8 @@ def play():
 
     # Variable para añadir velocidad
     Velocidad = 20
+    
+    golpes_jugador1 = 0
 
     # Bucle principal del juego
     while True:
@@ -76,6 +78,9 @@ def play():
 
         # Detección de golpes y animaciones
         if Tecla[pygame.K_q]:
+            # Si la posición del golpe 1 coincide con la del jugador 2, incrementa el contador de golpes del jugador 1
+            if Peleador1_x - 270 <= Peleador2_x <= Peleador1_x - 270 + Golpear1.get_width():
+                golpes_jugador1 += 1
             screen.blit(Golpear1, (Peleador1_x - 270, Peleador1_Y))
         else:
             screen.blit(Peleador1, (Peleador1_x, Peleador1_Y))
@@ -96,9 +101,9 @@ def play():
         screen.blit(Vida_Rojo, [100, 0])
         screen.blit(Vida_Azul, [800, 0])
 
-        pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, 477, 27))
-        pygame.draw.rect(screen, (0, 0, 255), (Vida_AzulX, Vida_AzulY, 477, 27))
-        pygame.mixer.music.stop()
+        # Dibujar la barra de vida azul
+        longitud_barra_azul = Vida_Largo - golpes_jugador1 * 10  # Ajusta el valor como prefieras
+        pygame.draw.rect(screen, (0, 0, 255), (Vida_AzulX, Vida_AzulY, longitud_barra_azul, Vida_Alto))
 
         pygame.display.flip()
         pygame.display.update()
