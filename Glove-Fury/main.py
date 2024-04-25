@@ -1,4 +1,4 @@
-mport pygame
+import pygame
 import sys
 from button import Button  # Asumo que tienes un módulo llamado 'button' que contiene la clase Button
 
