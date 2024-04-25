@@ -5,7 +5,7 @@ from button import Button  # Asumo que tienes un módulo llamado 'button' que co
 pygame.init()
 
 # Definición de la pantalla y carga de imágenes
-screen = pygame.display.set_mode((1420, 885))
+screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
 
 OptionsBG = pygame.image.load("Pygame-main/Glove-Fury/assets/Faceoff.png")
@@ -98,6 +98,7 @@ def play():
 
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, 477, 27))
         pygame.draw.rect(screen, (0, 0, 255), (Vida_AzulX, Vida_AzulY, 477, 27))
+        pygame.mixer.music.stop()
 
         pygame.display.flip()
         pygame.display.update()
