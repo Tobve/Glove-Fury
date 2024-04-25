@@ -171,5 +171,5 @@ def main_menu():
 
         pygame.display.update()
 
-# Llamada a la pantalla principal del menú
+#Llamada a la pantalla principal del menú
 main_menu()
