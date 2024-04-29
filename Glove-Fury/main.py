@@ -5,7 +5,7 @@ from button import Button
 pygame.init()
 
 # Definición de la pantalla y carga de imágenes
-screen = pygame.display.set_mode((1405, 900))
+screen = pygame.display.set_mode((1405, 850))
 pygame.display.set_caption("Glove Fury")
 
 OptionsBG = pygame.image.load("assets/Faceoff.png")
