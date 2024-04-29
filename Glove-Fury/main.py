@@ -18,6 +18,7 @@ def get_font(size):
 
 #Función para la pantalla de juego
 def play():
+    #No toques las direcciones de las imagenes el juego ya esta dentro de la carpeta no hace falta que pongas el "Glove-Fury"
     imagen = pygame.image.load("assets/octagono.png").convert_alpha()
     Peleador1 = pygame.image.load("assets/Boxeador.png").convert_alpha()
     Peleador2 = pygame.image.load("assets/Boxeador2.png")
