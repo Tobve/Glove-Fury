@@ -7,25 +7,25 @@ pygame.init()
 screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
 
-OptionsBG = pygame.image.load("Glove-Fury/assets/Faceoff.png")
-BG = pygame.image.load("Glove-Fury/assets/Background.png")
-pygame.mixer.music.load('Glove-Fury/sonido/1303905_Electronic-Nightmare.mp3')
+OptionsBG = pygame.image.load("assets/Faceoff.png")
+BG = pygame.image.load("assets/Background.png")
+pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
 pygame.mixer.music.play(3)
 
 #Función para obtener una fuente
 def get_font(size):
-    return pygame.font.Font("Glove-Fury/assets/font.ttf", size)
+    return pygame.font.Font("assets/font.ttf", size)
 
 #Función para la pantalla de juego
 def play():
-    imagen = pygame.image.load("Glove-Fury/assets/octagono.png").convert_alpha()
-    Peleador1 = pygame.image.load("Glove-Fury/assets/Boxeador.png").convert_alpha()
-    Peleador2 = pygame.image.load("Glove-Fury/assets/Boxeador2.png")
-    Vida_Rojo = pygame.image.load("Glove-Fury/assets/VidaRojo.png")
-    Vida_Azul = pygame.image.load("Glove-Fury/assets/VidaAzul.png")
-    Golpear1 = pygame.image.load("Glove-Fury/assets/Golpe1.png")
-    Golpear2 = pygame.image.load("Glove-Fury/assets/Golpe2.png")
-    Ganador_Azul = pygame.image.load("Glove-Fury/assets/GanadorAzul.png")
+    imagen = pygame.image.load("assets/octagono.png").convert_alpha()
+    Peleador1 = pygame.image.load("assets/Boxeador.png").convert_alpha()
+    Peleador2 = pygame.image.load("assets/Boxeador2.png")
+    Vida_Rojo = pygame.image.load("assets/VidaRojo.png")
+    Vida_Azul = pygame.image.load("assets/VidaAzul.png")
+    Golpear1 = pygame.image.load("assets/Golpe1.png")
+    Golpear2 = pygame.image.load("assets/Golpe2.png")
+    Ganador_Azul = pygame.image.load("assets/GanadorAzul.png")
     Ganador_Rojo = pygame.image.load("assets/GanadorRojo.png")
      
     #Variables para las posiciones
@@ -151,11 +151,11 @@ def options():
 
 #Función para la pantalla principal del menú
 def main_menu():
-    PLAY_BUTTON = Button(image=pygame.image.load("Glove-Fury/assets/OptionsButton.png"), pos=(700, 250),
+    PLAY_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 250),
                          text_input="Boxear", font=get_font(47), base_color="White", hovering_color="Black")
-    OPTIONS_BUTTON = Button(image=pygame.image.load("Glove-Fury/assets/OptionsButton.png"), pos=(700, 400),
+    OPTIONS_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 400),
                             text_input="Ajustes", font=get_font(47), base_color="White", hovering_color="Black")
-    QUIT_BUTTON = Button(image=pygame.image.load("Glove-Fury/assets/OptionsButton.png"), pos=(700, 550),
+    QUIT_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 550),
                          text_input="Miedo?", font=get_font(47), base_color="White", hovering_color="Black")
 
     while True:
