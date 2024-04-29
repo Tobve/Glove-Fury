@@ -130,12 +130,14 @@ def play():
             screen.blit(Ganador_Azul, [450, 200])
             pygame.display.update()
             pygame.time.delay(5000)  # Esperar 5 segundos
-            return 
+            pygame.mixer.music.play(3)
+            return
         
         if longitud_barra_azul <= 0:
             screen.blit(Ganador_Rojo, [450, 200])
             pygame.display.update()
             pygame.time.delay(5000)  # Esperar 5 segundos
+            pygame.mixer.music.play(3)
             return
         
         pygame.mixer.music.stop()
