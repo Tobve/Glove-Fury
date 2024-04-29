@@ -26,6 +26,7 @@ def play():
     Golpear1 = pygame.image.load("Glove-Fury/assets/Golpe1.png")
     Golpear2 = pygame.image.load("Glove-Fury/assets/Golpe2.png")
     Ganador_Azul = pygame.image.load("Glove-Fury/assets/GanadorAzul.png")
+    Ganador_Rojo = pygame.image.load("assets/GanadorRojo.png")
      
     #Variables para las posiciones
     Peleador1_x = -320
@@ -111,6 +112,8 @@ def play():
         
         if longitud_barra_rojo <= 0:
             screen.blit(Ganador_Azul, [450, 200])
+        if longitud_barra_azul <= 0:
+            screen.blit(Ganador_Rojo, [450, 200])
         
         #Dibujar las barras de vida (parte inerior)
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, longitud_barra_rojo, Vida_Alto))
