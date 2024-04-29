@@ -5,7 +5,7 @@ from button import Button
 pygame.init()
 
 # Definición de la pantalla y carga de imágenes
-screen = pygame.display.set_mode((1405, 850))
+screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
 
 OptionsBG = pygame.image.load("assets/Faceoff.png")
@@ -42,6 +42,10 @@ def play():
     #Variables de golpeos
     Golpe_rojo = 0
     Golpe_azul = 0
+    
+    #Variable de teclas para que no puedan hacer daño manteniendo
+    P_Pressed = False
+    Q_Pressed = False
 
     # Bucle principal del juego
     while True:
@@ -82,18 +86,25 @@ def play():
             Peleador2_x = Peleador1_x + Peleador1.get_width() - 1
 
         #Detección de golpes y animaciones
-        if Tecla[pygame.K_q]:
-            # Si la posición del golpe 1 coincide con la del jugador 2, incrementa el contador de golpes del jugador 1
+        if Tecla[pygame.K_q] and not Q_Pressed:
+            Q_Pressed = True
             if Peleador1_x - 270 <= Peleador2_x <= Peleador1_x - 270 + Golpear1.get_width() -196:
                 Golpe_rojo += 1
             screen.blit(Golpear1, (Peleador1_x - 270, Peleador1_Y))
+        elif not Tecla[pygame.K_q]:
+            Q_Pressed = False
+            screen.blit(Peleador1, (Peleador1_x, Peleador1_Y))
         else:
             screen.blit(Peleador1, (Peleador1_x, Peleador1_Y))
 
-        if Tecla[pygame.K_p]:
+        if Tecla[pygame.K_p] and not P_Pressed:
+            P_Pressed = True
             if Peleador2_x + 270 >= Peleador1_x >= Peleador2_x + 270 - Golpear2.get_width() +196:
                 Golpe_azul += 1
             screen.blit(Golpear2, (Peleador2_x - 390, Peleador2_Y))
+        elif not Tecla[pygame.K_p]:
+            P_Pressed = False
+            screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
         else:
             screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
 
@@ -111,7 +122,7 @@ def play():
         longitud_barra_azul = Vida_Largo - Golpe_rojo * 15 #Parametro del daño Rojo
         longitud_barra_rojo = Vida_Largo - Golpe_azul * 15 #Parametro del daño Azul
         
-        #Dibujar las barras de vida (parte inerior)
+    #Dibujar las barras de vida (parte inerior)
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, longitud_barra_rojo, Vida_Alto))
         pygame.draw.rect(screen, (0, 0, 255), (Vida_AzulX, Vida_AzulY, longitud_barra_azul, Vida_Alto))
         
