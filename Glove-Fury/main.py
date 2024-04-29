@@ -1,33 +1,34 @@
 import pygame
 import sys
 from button import Button
+
 pygame.init()
 
-#Definición de la pantalla y carga de imágenes
+# Definición de la pantalla y carga de imágenes
 screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
 
-OptionsBG = pygame.image.load("assets/Faceoff.png")
-BG = pygame.image.load("assets/Background.png")
-pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
+OptionsBG = pygame.image.load("Glove-Fury/assets/Faceoff.png")
+BG = pygame.image.load("Glove-Fury/assets/Background.png")
+pygame.mixer.music.load('Glove-Fury/sonido/1303905_Electronic-Nightmare.mp3')
 pygame.mixer.music.play(3)
 
-#Función para obtener una fuente
+# Función para obtener una fuente
 def get_font(size):
-    return pygame.font.Font("assets/font.ttf", size)
+    return pygame.font.Font("Glove-Fury/assets/font.ttf", size)
 
-#Función para la pantalla de juego
+# Función para la pantalla de juego
 def play():
     #No toques las direcciones de las imagenes el juego ya esta dentro de la carpeta no hace falta que pongas el "Glove-Fury"
-    imagen = pygame.image.load("assets/octagono.png").convert_alpha()
-    Peleador1 = pygame.image.load("assets/Boxeador.png").convert_alpha()
-    Peleador2 = pygame.image.load("assets/Boxeador2.png")
-    Vida_Rojo = pygame.image.load("assets/VidaRojo.png")
-    Vida_Azul = pygame.image.load("assets/VidaAzul.png")
-    Golpear1 = pygame.image.load("assets/Golpe1.png")
-    Golpear2 = pygame.image.load("assets/Golpe2.png")
-    Ganador_Azul = pygame.image.load("assets/GanadorAzul.png")
-    Ganador_Rojo = pygame.image.load("assets/GanadorRojo.png")
+    imagen = pygame.image.load("Glove-Fury/assets/octagono.png").convert_alpha()
+    Peleador1 = pygame.image.load("Glove-Fury/assets/Boxeador.png").convert_alpha()
+    Peleador2 = pygame.image.load("Glove-Fury/assets/Boxeador2.png")
+    Vida_Rojo = pygame.image.load("Glove-Fury/assets/VidaRojo.png")
+    Vida_Azul = pygame.image.load("Glove-Fury/assets/VidaAzul.png")
+    Golpear1 = pygame.image.load("Glove-Fury/assets/Golpe1.png")
+    Golpear2 = pygame.image.load("Glove-Fury/assets/Golpe2.png")
+    Ganador_Azul = pygame.image.load("Glove-Fury/assets/GanadorAzul.png")
+    Ganador_Rojo = pygame.image.load("Glove-Fury/assets/GanadorRojo.png")
      
     #Variables para las posiciones
     Peleador1_x = -320
@@ -113,8 +114,14 @@ def play():
         
         if longitud_barra_rojo <= 0:
             screen.blit(Ganador_Azul, [450, 200])
+            pygame.display.update()
+            pygame.time.delay(5000)  # Esperar 5 segundos
+            return
         if longitud_barra_azul <= 0:
             screen.blit(Ganador_Rojo, [450, 200])
+            pygame.display.update()
+            pygame.time.delay(5000)  # Esperar 5 segundos
+            return
         
         #Dibujar las barras de vida (parte inerior)
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, longitud_barra_rojo, Vida_Alto))
@@ -152,11 +159,11 @@ def options():
 
 #Función para la pantalla principal del menú
 def main_menu():
-    PLAY_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 250),
+    PLAY_BUTTON = Button(image=pygame.image.load("Glove-Fury/assets/OptionsButton.png"), pos=(700, 250),
                          text_input="Boxear", font=get_font(47), base_color="White", hovering_color="Black")
-    OPTIONS_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 400),
+    OPTIONS_BUTTON = Button(image=pygame.image.load("Glove-Fury/assets/OptionsButton.png"), pos=(700, 400),
                             text_input="Ajustes", font=get_font(47), base_color="White", hovering_color="Black")
-    QUIT_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 550),
+    QUIT_BUTTON = Button(image=pygame.image.load("Glove-Fury/assets/OptionsButton.png"), pos=(700, 550),
                          text_input="Miedo?", font=get_font(47), base_color="White", hovering_color="Black")
 
     while True:
@@ -188,4 +195,3 @@ def main_menu():
         pygame.display.update()
 
 main_menu()
-
