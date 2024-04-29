@@ -117,6 +117,7 @@ def play():
             pygame.display.update()
             pygame.time.delay(5000)  # Esperar 5 segundos
             return
+        
         if longitud_barra_azul <= 0:
             screen.blit(Ganador_Rojo, [450, 200])
             pygame.display.update()
@@ -140,10 +141,7 @@ def options():
         OPTIONS_TEXT = get_font(45).render("Opciones", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(700, 100))
         screen.blit(OPTIONS_TEXT, OPTIONS_RECT)
-
-        OPTIONS_BACK = Button(image=None, pos=(700, 760),
-                             text_input="Inicio", font=get_font(75), base_color="Black", hovering_color="White")
-
+        OPTIONS_BACK = Button(image=None, pos=(700, 760), text_input="Inicio", font=get_font(75), base_color="Black", hovering_color="White")
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(screen)
 
@@ -159,12 +157,9 @@ def options():
 
 #Función para la pantalla principal del menú
 def main_menu():
-    PLAY_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 250),
-                         text_input="Boxear", font=get_font(47), base_color="White", hovering_color="Black")
-    OPTIONS_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 400),
-                            text_input="Ajustes", font=get_font(47), base_color="White", hovering_color="Black")
-    QUIT_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 550),
-                         text_input="Miedo?", font=get_font(47), base_color="White", hovering_color="Black")
+    PLAY_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 250), text_input="Boxear", font=get_font(47), base_color="White", hovering_color="Black")
+    OPTIONS_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 400), text_input="Ajustes", font=get_font(47), base_color="White", hovering_color="Black")
+    QUIT_BUTTON = Button(image=pygame.image.load("assets/OptionsButton.png"), pos=(700, 550), text_input="Miedo?", font=get_font(47), base_color="White", hovering_color="Black")
 
     while True:
         screen.blit(BG, (0, 0))
