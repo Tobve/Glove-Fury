@@ -32,12 +32,12 @@ def play():
      
     #Variables para las posiciones
     Peleador1_x = -320
-    Peleador1_Y = 30
+    Peleador1_Y = 50
     Peleador2_x = 1200
-    Peleador2_Y = 30
+    Peleador2_Y = 50
 
     #Variable para añadir velocidad
-    Velocidad = 20
+    Velocidad = 10
     
     #Variables de golpeos
     Golpe_rojo = 0
