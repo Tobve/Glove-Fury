@@ -4,7 +4,7 @@ from button import Button
 
 pygame.init()
 
-# Definición de la pantalla y carga de imágenes
+#Definición de la pantalla y carga de imágenes
 screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
 
@@ -13,11 +13,11 @@ BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
 pygame.mixer.music.play(3)
 
-# Función para obtener una fuente
+#Función para obtener una fuente
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
-# Función para la pantalla de juego
+#Función para la pantalla de juego
 def play():
     #No toques las direcciones de las imagenes el juego ya esta dentro de la carpeta no hace falta que pongas el "Glove-Fury"
     imagen = pygame.image.load("assets/octagono.png").convert_alpha()
