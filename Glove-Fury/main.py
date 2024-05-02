@@ -119,8 +119,8 @@ def play():
         screen.blit(Vida_Rojo, [100, 0])
         screen.blit(Vida_Azul, [800, 0])
         
-        longitud_barra_azul = Vida_Largo - Golpe_rojo * 15 #Parametro del daño Rojo
-        longitud_barra_rojo = Vida_Largo - Golpe_azul * 15 #Parametro del daño Azul
+        longitud_barra_azul = Vida_Largo - Golpe_rojo * 15 #Daño
+        longitud_barra_rojo = Vida_Largo - Golpe_azul * 15 #Daño
         
     #Dibujar las barras de vida (parte inerior)
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, longitud_barra_rojo, Vida_Alto))
@@ -129,14 +129,14 @@ def play():
         if longitud_barra_rojo <= 0:
             screen.blit(Ganador_Azul, [450, 200])
             pygame.display.update()
-            pygame.time.delay(5000)  # Esperar 5 segundos
+            pygame.time.delay(3000)  
             pygame.mixer.music.play(3)
             return
         
         if longitud_barra_azul <= 0:
             screen.blit(Ganador_Rojo, [450, 200])
             pygame.display.update()
-            pygame.time.delay(5000)  # Esperar 5 segundos
+            pygame.time.delay(3000)  
             pygame.mixer.music.play(3)
             return
         
