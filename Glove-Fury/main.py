@@ -119,8 +119,8 @@ def play():
         screen.blit(Vida_Rojo, [100, 0])
         screen.blit(Vida_Azul, [800, 0])
         
-        longitud_barra_azul = Vida_Largo - Golpe_rojo * 15 #Daño
-        longitud_barra_rojo = Vida_Largo - Golpe_azul * 15 #Daño
+        longitud_barra_azul = Vida_Largo - Golpe_rojo * 15 
+        longitud_barra_rojo = Vida_Largo - Golpe_azul * 15 
         
     #Dibujar las barras de vida (parte inerior)
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, longitud_barra_rojo, Vida_Alto))
