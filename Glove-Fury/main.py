@@ -4,20 +4,19 @@ from button import Button
 
 pygame.init()
 
-#Definición de la pantalla y carga de imágenes
+# Definición de la pantalla y carga de imágenes
 screen = pygame.display.set_mode((1405, 900))
 pygame.display.set_caption("Glove Fury")
-
 OptionsBG = pygame.image.load("assets/Faceoff.png")
 BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(3)
 
-#Función para obtener una fuente
+# Función para obtener una fuente
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
-#Función para la pantalla de juego
+# Función para la pantalla de juego
 def play():
     #No toques las direcciones de las imagenes el juego ya esta dentro de la carpeta no hace falta que pongas el "Glove-Fury"
     imagen = pygame.image.load("assets/octagono.png").convert_alpha()
@@ -29,15 +28,17 @@ def play():
     Golpear2 = pygame.image.load("assets/Golpe2.png")
     Ganador_Azul = pygame.image.load("assets/GanadorAzul.png")
     Ganador_Rojo = pygame.image.load("assets/GanadorRojo.png")
+    Regenerando_R = pygame.image.load("assets/Regenerando_R.png") 
+    Regenerando_A = pygame.image.load("assets/Regenerando_A.png")
      
     #Variables para las posiciones
     Peleador1_x = -320
-    Peleador1_Y = 50
+    Peleador1_Y = 30
     Peleador2_x = 1200
-    Peleador2_Y = 50
+    Peleador2_Y = 30
 
     #Variable para añadir velocidad
-    Velocidad = 10
+    Velocidad = 20
     
     #Variables de golpeos
     Golpe_rojo = 0
@@ -46,6 +47,11 @@ def play():
     #Variable de teclas para que no puedan hacer daño manteniendo
     P_Pressed = False
     Q_Pressed = False
+    E_Pressed = False
+    I_Pressed = False
+
+    Regenerar_rojo = False
+    Regenerar_azul = False
 
     # Bucle principal del juego
     while True:
@@ -84,12 +90,14 @@ def play():
             Peleador2_x = Peleador1_x + 196
         elif Peleador2_x < Peleador1_x + Peleador1.get_width() - 1:
             Peleador2_x = Peleador1_x + Peleador1.get_width() - 1
+            
+        
 
         #Detección de golpes y animaciones
         if Tecla[pygame.K_q] and not Q_Pressed:
             Q_Pressed = True
             if Peleador1_x - 270 <= Peleador2_x <= Peleador1_x - 270 + Golpear1.get_width() -196:
-                Golpe_rojo += 1
+                Golpe_rojo += 5
             screen.blit(Golpear1, (Peleador1_x - 270, Peleador1_Y))
         elif not Tecla[pygame.K_q]:
             Q_Pressed = False
@@ -100,13 +108,36 @@ def play():
         if Tecla[pygame.K_p] and not P_Pressed:
             P_Pressed = True
             if Peleador2_x + 270 >= Peleador1_x >= Peleador2_x + 270 - Golpear2.get_width() +196:
-                Golpe_azul += 1
+                Golpe_azul += 5
             screen.blit(Golpear2, (Peleador2_x - 390, Peleador2_Y))
         elif not Tecla[pygame.K_p]:
             P_Pressed = False
             screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
         else:
             screen.blit(Peleador2, (Peleador2_x, Peleador2_Y))
+        #Bloqueo de los peleadores 
+        if Tecla[pygame.K_e] and not E_Pressed:
+            E_Pressed = True
+            Regenerar_rojo = True
+            if Regenerar_rojo == True and not longitud_barra_rojo == 477:
+                Golpe_azul  -=0.5
+                screen.blit(Regenerando_R, [Peleador1_x - 130, 100])
+        elif not Tecla[pygame.K_e]:
+            E_Pressed = False
+        else:
+            screen.blit(Regenerando_R, [Peleador1_x - 130, 100])
+       
+        if Tecla[pygame.K_i] and not  I_Pressed:
+            I_Pressed = True
+            Regenerar_azul = True
+            if Regenerar_azul == True and not longitud_barra_azul == 477:
+                Golpe_rojo  -=0.5
+                screen.blit(Regenerando_A, [Peleador2_x - 130, 100])
+        elif not Tecla[pygame.K_i]:
+            I_Pressed = False
+        else:
+            screen.blit(Regenerando_A, [Peleador2_x - 130, 100])
+        
 
         #Barra de vida
         Vida_Largo = 477
@@ -120,7 +151,7 @@ def play():
         screen.blit(Vida_Azul, [800, 0])
         
         longitud_barra_azul = Vida_Largo - Golpe_rojo * 15 
-        longitud_barra_rojo = Vida_Largo - Golpe_azul * 15 
+        longitud_barra_rojo = Vida_Largo - Golpe_azul * 15
         
     #Dibujar las barras de vida (parte inerior)
         pygame.draw.rect(screen, (255, 0, 0), (Vida_RojoX, Vida_RojoY, longitud_barra_rojo, Vida_Alto))
@@ -129,14 +160,14 @@ def play():
         if longitud_barra_rojo <= 0:
             screen.blit(Ganador_Azul, [450, 200])
             pygame.display.update()
-            pygame.time.delay(3000)  
+            pygame.time.delay(5000)  
             pygame.mixer.music.play(3)
             return
         
         if longitud_barra_azul <= 0:
             screen.blit(Ganador_Rojo, [450, 200])
             pygame.display.update()
-            pygame.time.delay(3000)  
+            pygame.time.delay(5000)
             pygame.mixer.music.play(3)
             return
         
@@ -154,7 +185,7 @@ def options():
         OPTIONS_TEXT = get_font(45).render("Opciones", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(700, 100))
         screen.blit(OPTIONS_TEXT, OPTIONS_RECT)
-        OPTIONS_BACK = Button(image=None, pos=(700, 760), text_input="Inicio", font=get_font(75), base_color="Black", hovering_color="White")
+        OPTIONS_BACK = Button(image=None, pos=(700, 760), text_input="Volver al menu", font=get_font(75), base_color="Black", hovering_color="White")
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(screen)
 
@@ -183,7 +214,7 @@ def main_menu():
         MENU_RECT = MENU_TEXT.get_rect(center=(700, 100))
         screen.blit(MENU_TEXT, MENU_RECT)
 
-        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+        for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON,]:
             button.changeColor(MENU_MOUSE_POS)
             button.update(screen)
 
