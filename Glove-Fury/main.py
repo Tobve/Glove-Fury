@@ -10,7 +10,7 @@ pygame.display.set_caption("Glove Fury")
 OptionsBG = pygame.image.load("assets/Faceoff.png")
 BG = pygame.image.load("assets/Background.png")
 pygame.mixer.music.load('sonido/1303905_Electronic-Nightmare.mp3')
-pygame.mixer.music.play(3)
+pygame.mixer.music.play(-1)
 
 # Función para obtener una fuente
 def get_font(size):
